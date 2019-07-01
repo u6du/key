@@ -5,8 +5,8 @@ github.com/pkg/errors v0.8.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINE
 github.com/rs/xid v1.2.1/go.mod h1:+uKXf+4Djp6Md1KODXJxgGQPKngRmWyn10oCKFzNHOQ=
 github.com/rs/zerolog v1.14.3 h1:4EGfSkR2hJDB0s3oFfrlPqjU1e4WLncergLil3nEKW0=
 github.com/rs/zerolog v1.14.3/go.mod h1:3WXPzbXEEliJ+a6UFE4vhIxV8qR1EML6ngzP9ug4eYg=
-github.com/u6du/config v0.0.0-20190701035332-ccc0e74e640d h1:YV0ToCD0LO4viz5/osiCGp9QAkOTpfrMsOjmrIc5XEE=
-github.com/u6du/config v0.0.0-20190701035332-ccc0e74e640d/go.mod h1:BhBELgXIWnpdq7QUig2WySHCzqFAzVwC7YdSFtbTSN0=
+github.com/u6du/config v0.0.0-20190701040803-d1e129bd65fe h1:PdSzJiNQ4HNBWs/etLXn06Chge2LU+b2hfkxusZVKVo=
+github.com/u6du/config v0.0.0-20190701040803-d1e129bd65fe/go.mod h1:BhBELgXIWnpdq7QUig2WySHCzqFAzVwC7YdSFtbTSN0=
 github.com/u6du/ex v0.0.0-20190628070729-e33da411a5b7 h1:1Mibry3Jp90csiFMG2dQD9KDXaTxBuGv8v3tZEpAoNQ=
 github.com/u6du/ex v0.0.0-20190628070729-e33da411a5b7/go.mod h1:CGUxsNSyVgthQqL/OI+U/Zyj7MyXySjWT2ySxXMZTbQ=
 github.com/u6du/go-rfc1924 v0.0.0-20170108144916-2767ca7c638f h1:3HmpyqJKGM8Z8U9NqBSlACX6d/knnjtVnYyP/JhxNxQ=

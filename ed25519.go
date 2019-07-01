@@ -20,7 +20,7 @@ func InitEd25519() {
 			_, private, err := ed25519.GenerateKey(rand.Reader)
 			ex.Panic(err)
 
-			err = ioutil.WriteFile(config.Userpath(name+"public"), private.Public().(ed25519.PublicKey), 0600)
+			err = ioutil.WriteFile(config.UserPath(name+"public"), private.Public().(ed25519.PublicKey), 0600)
 			ex.Panic(err)
 
 			return private.Seed()
