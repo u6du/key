@@ -28,8 +28,3 @@ func InitBls() {
 	copy(key[:], binary)
 	BlsPrivate = *g1pubs.DeserializeSecretKey(key)
 }
-
-/*
-}
-
-*/
