@@ -1,10 +1,12 @@
-package key
+package bls
 
 import (
 	"crypto/rand"
 
 	"github.com/phoreproject/bls/g1pubs"
 	"github.com/u6du/ex"
+
+	"github.com/u6du/key"
 )
 
 // https://github.com/prysmaticlabs/prysm/blob/master/shared/bls/bls.go
@@ -12,7 +14,7 @@ var BlsPrivate g1pubs.SecretKey
 
 func InitBls() {
 
-	binary := initKey(
+	binary := key.InitKey(
 		"bls",
 		func() ([]byte, []byte) {
 			private, err := g1pubs.RandKey(rand.Reader)
@@ -24,9 +26,9 @@ func InitBls() {
 			return t[:], public[:]
 		})
 
-	var key [32]byte
-	copy(key[:], binary)
-	BlsPrivate = *g1pubs.DeserializeSecretKey(key)
+	var r [32]byte
+	copy(r[:], binary)
+	BlsPrivate = *g1pubs.DeserializeSecretKey(r)
 }
 
 func init() {

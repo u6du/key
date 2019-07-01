@@ -1,4 +1,4 @@
-package key
+package bls
 
 import (
 	"crypto/rand"

@@ -6,7 +6,7 @@ import (
 	"github.com/u6du/config"
 )
 
-func initKey(name string, f func() ([]byte, []byte)) []byte {
+func InitKey(name string, f func() ([]byte, []byte)) []byte {
 	name = "key/" + name + "."
 	return config.UserByte(
 		name+"private",

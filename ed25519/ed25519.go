@@ -1,16 +1,18 @@
-package key
+package ed25519
 
 import (
 	"crypto/rand"
 
 	"github.com/u6du/ex"
 	"golang.org/x/crypto/ed25519"
+
+	"github.com/u6du/key"
 )
 
 var Ed25519Private ed25519.PrivateKey
 
 func InitEd25519() {
-	binary := initKey(
+	binary := key.InitKey(
 		"ed25519",
 		func() ([]byte, []byte) {
 			_, private, err := ed25519.GenerateKey(rand.Reader)
