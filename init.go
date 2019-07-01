@@ -6,12 +6,6 @@ import (
 	"github.com/u6du/config"
 )
 
-func Reload() {
-	InitEd25519()
-	InitBls()
-
-}
-
 func initKey(name string, f func() ([]byte, []byte)) []byte {
 	name = "key/" + name + "."
 	return config.UserByte(
@@ -21,8 +15,4 @@ func initKey(name string, f func() ([]byte, []byte)) []byte {
 			ioutil.WriteFile(config.UserPath(name+"public"), public, 0600)
 			return private
 		})
-}
-
-func init() {
-	Reload()
 }

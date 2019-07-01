@@ -20,3 +20,7 @@ func InitEd25519() {
 
 	Ed25519Private = ed25519.NewKeyFromSeed(binary)
 }
+
+func init() {
+	InitEd25519()
+}
