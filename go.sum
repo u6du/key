@@ -14,8 +14,8 @@ github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZN
 github.com/rs/xid v1.2.1/go.mod h1:+uKXf+4Djp6Md1KODXJxgGQPKngRmWyn10oCKFzNHOQ=
 github.com/rs/zerolog v1.14.3 h1:4EGfSkR2hJDB0s3oFfrlPqjU1e4WLncergLil3nEKW0=
 github.com/rs/zerolog v1.14.3/go.mod h1:3WXPzbXEEliJ+a6UFE4vhIxV8qR1EML6ngzP9ug4eYg=
-github.com/u6du/config v0.0.0-20190702025436-c1d584975b53 h1:4b5BU9NlNqjM/nQisM5apNWq/Ldl/0YRumIIaoifftQ=
-github.com/u6du/config v0.0.0-20190702025436-c1d584975b53/go.mod h1:BhBELgXIWnpdq7QUig2WySHCzqFAzVwC7YdSFtbTSN0=
+github.com/u6du/config v0.0.0-20190702030650-85d7e162d85e h1:Na2vif6GsIPPjzN6SzLPBbDHRRc6MFfH4HBBbRA8+O4=
+github.com/u6du/config v0.0.0-20190702030650-85d7e162d85e/go.mod h1:BhBELgXIWnpdq7QUig2WySHCzqFAzVwC7YdSFtbTSN0=
 github.com/u6du/ex v0.0.0-20190628070729-e33da411a5b7 h1:1Mibry3Jp90csiFMG2dQD9KDXaTxBuGv8v3tZEpAoNQ=
 github.com/u6du/ex v0.0.0-20190628070729-e33da411a5b7/go.mod h1:CGUxsNSyVgthQqL/OI+U/Zyj7MyXySjWT2ySxXMZTbQ=
 github.com/u6du/go-rfc1924 v0.0.0-20170108144916-2767ca7c638f h1:3HmpyqJKGM8Z8U9NqBSlACX6d/knnjtVnYyP/JhxNxQ=
