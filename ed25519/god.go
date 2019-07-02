@@ -1,4 +1,4 @@
-package key
+package ed25519
 
 import (
 	"github.com/u6du/ex"

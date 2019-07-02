@@ -3,16 +3,16 @@ package key
 import (
 	"io/ioutil"
 
-	"github.com/u6du/config"
+	"github.com/u6du/config/user"
 )
 
 func InitKey(name string, f func() ([]byte, []byte)) []byte {
 	name = "key/" + name + "."
-	return config.UserByte(
+	return user.File.Byte(
 		name+"private",
 		func() []byte {
 			private, public := f()
-			ioutil.WriteFile(config.UserPath(name+"public"), public, 0600)
+			ioutil.WriteFile(user.File.Path(name+"public"), public, 0600)
 			return private
 		})
 }
