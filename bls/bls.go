@@ -15,9 +15,9 @@ type PublicKey []byte
 // https://github.com/prysmaticlabs/prysm/blob/master/shared/bls/bls.go
 var Private PrivateKey
 
-func (p PrivateKey) Public() PublicKey {
+func (priv PrivateKey) Public() PublicKey {
 	var r [32]byte
-	copy(r[:], p)
+	copy(r[:], priv)
 	secret := g1pubs.DeserializeSecretKey(r)
 	t := g1pubs.PrivToPub(secret).Serialize()
 	return t[:]
