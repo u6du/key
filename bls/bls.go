@@ -10,7 +10,7 @@ import (
 )
 
 // https://github.com/prysmaticlabs/prysm/blob/master/shared/bls/bls.go
-var BlsPrivate g1pubs.SecretKey
+var Private g1pubs.SecretKey
 
 func InitBls() {
 
@@ -28,7 +28,7 @@ func InitBls() {
 
 	var r [32]byte
 	copy(r[:], binary)
-	BlsPrivate = *g1pubs.DeserializeSecretKey(r)
+	Private = *g1pubs.DeserializeSecretKey(r)
 }
 
 func init() {

@@ -9,7 +9,7 @@ import (
 	"github.com/u6du/key"
 )
 
-var Ed25519Private ed25519.PrivateKey
+var Private ed25519.PrivateKey
 
 func InitEd25519() {
 	binary := key.InitKey(
@@ -20,7 +20,7 @@ func InitEd25519() {
 			return private.Seed(), private.Public().(ed25519.PublicKey)
 		})
 
-	Ed25519Private = ed25519.NewKeyFromSeed(binary)
+	Private = ed25519.NewKeyFromSeed(binary)
 }
 
 func init() {
