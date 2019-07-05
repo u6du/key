@@ -1,26 +1,26 @@
 package key
 
 type BytePrivate struct {
-	Byte []byte
+	byte []byte
 }
 
 type BytePublic struct {
-	Byte []byte
+	byte []byte
 }
 
 type Private interface {
-	Self() *BytePrivate
+	Byte() []byte
 	Public() Public
 }
 
 type Public interface {
-	Self() *BytePublic
+	Byte() []byte
 }
 
-func (p *BytePrivate) Self() *BytePrivate {
-	return p
+func (p *BytePrivate) Byte() []byte {
+	return p.byte
 }
 
-func (p *BytePublic) Self() *BytePublic {
-	return p
+func (p *BytePublic) Byte() []byte {
+	return p.byte
 }
