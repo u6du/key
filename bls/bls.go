@@ -4,11 +4,11 @@ import (
 	"github.com/u6du/key"
 )
 
-var Private key.Private
+var Private *key.BlsPrivate
 
 func InitBls() {
 
-	binary := key.InitKey("bls", key.NewBlsPrivate)
+	binary := key.InitKey("bls", key.NewBlsPrivatePublicByte)
 	Private = key.LoadBlsPrivate(binary)
 }
 

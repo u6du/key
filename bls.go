@@ -7,45 +7,58 @@ import (
 	"github.com/u6du/ex"
 )
 
-type BlsPrivateKey struct {
-	BytePrivate
-	key *g1pubs.SecretKey
+type BlsPrivate struct {
+	Byte []byte
+	key  *g1pubs.SecretKey
 }
 
-type BlsPublicKey struct {
-	BytePublic
-	key *g1pubs.PublicKey
+type BlsPublic struct {
+	Byte []byte
+	key  *g1pubs.PublicKey
 }
 
 // https://github.com/prysmaticlabs/prysm/blob/master/shared/bls/bls.go
-/*
-func (p BlsPrivateKey) Public() BlsPublicKey {
-	var r [32]byte
-	copy(r[:], p)
-	secret := g1pubs.DeserializeSecretKey(r)
-	t := g1pubs.PrivToPub(secret).Serialize()
-	return t[:]
-}
-*/
-func LoadBlsPrivate(b []byte) Private {
+
+func LoadBlsPrivate(binary []byte) *BlsPrivate {
 	var t [32]byte
-	copy(t[:], b)
-	return &BlsPrivateKey{BytePrivate{b}, g1pubs.DeserializeSecretKey(t)}
+	copy(t[:], binary)
+	return &BlsPrivate{binary, g1pubs.DeserializeSecretKey(t)}
 }
 
-func NewBlsPrivate() Private {
+func LoadBlsPublic(binary []byte) *BlsPublic {
+	b48 := [48]byte{}
+	copy(b48[:], binary)
+	p, err := g1pubs.DeserializePublicKey(b48)
+	ex.Panic(err)
+	return &BlsPublic{binary, p}
+}
+
+func NewBlsPrivate() *BlsPrivate {
 	private, err := g1pubs.RandKey(rand.Reader)
 	ex.Panic(err)
 	t := private.Serialize()
-	var b []byte
-	copy(b, t[:])
-	return &BlsPrivateKey{BytePrivate{b}, private}
+	var binary []byte
+	copy(binary, t[:])
+	return &BlsPrivate{binary, private}
 }
 
-func (b *BlsPrivateKey) Public() Public {
+func NewBlsPrivatePublicByte() ([]byte, []byte) {
+	private := NewBlsPrivate()
+	return private.Byte, private.Public().Byte
+}
+
+func (b *BlsPrivate) Public() *BlsPublic {
 	p := g1pubs.PrivToPub(b.key)
 	var binary []byte
 	t := b.key.Serialize()
 	copy(binary, t[:])
-	return &BlsPublicKey{BytePublic{binary}, p}
+	return &BlsPublic{binary, p}
+}
+
+func (b *BlsPrivate) Sign(binary []byte) []byte {
+
+}
+
+func (b *BlsPublic) Verify(binary []byte, sign []byte) bool {
+
 }
