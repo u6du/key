@@ -71,8 +71,8 @@ func b32(binary []byte) [32]byte {
 
 func (b *BlsPrivate) Sign(domain uint64, binary []byte) []byte {
 	s := g1pubs.SignWithDomain(b32(binary), b.key, domain)
-	b96 := s.Serialize()
-	return b96[:]
+	r := s.Serialize()
+	return r[:]
 }
 
 func (b *BlsPublic) Verify(domain uint64, binary []byte, sign []byte) bool {
