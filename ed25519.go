@@ -24,7 +24,6 @@ func (e Ed25519Private) Byte() []byte {
 	return ed25519.PrivateKey(e).Seed()
 }
 
-
 func (e Ed25519Public) Byte() []byte {
 	return e
 }
