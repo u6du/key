@@ -5,6 +5,7 @@ import (
 
 	"github.com/phoreproject/bls/g1pubs"
 	"github.com/u6du/ex"
+	"golang.org/x/crypto/blake2b"
 )
 
 type BlsPrivate struct {
@@ -37,7 +38,7 @@ func NewBlsPrivate() *BlsPrivate {
 	private, err := g1pubs.RandKey(rand.Reader)
 	ex.Panic(err)
 	t := private.Serialize()
-	var binary []byte
+	binary := make([]byte, 32)
 	copy(binary, t[:])
 	return &BlsPrivate{binary, private}
 }
@@ -63,24 +64,45 @@ func (b *BlsPrivate) Public() *BlsPublic {
 	return &BlsPublic{binary, p}
 }
 
-func b32(binary []byte) [32]byte {
+func hash32(binary []byte) [32]byte {
+	if len(binary) > 32 {
+		return blake2b.Sum256(binary)
+	}
+
 	var b32 [32]byte
 	copy(b32[:], binary)
+
 	return b32
 }
 
-func (b *BlsPrivate) Sign(domain uint64, binary []byte) []byte {
-	s := g1pubs.SignWithDomain(b32(binary), b.key, domain)
+func (b *BlsPrivate) Sign(binary []byte) []byte {
+	s := g1pubs.Sign(binary, b.key)
 	r := s.Serialize()
 	return r[:]
 }
 
-func (b *BlsPublic) Verify(domain uint64, binary []byte, sign []byte) bool {
+func (b *BlsPublic) Verify(binary []byte, sign []byte) bool {
 	var b96 [96]byte
 	copy(b96[:], sign)
 	s, err := g1pubs.DeserializeSignature(b96)
 	if err != nil {
 		return false
 	}
-	return g1pubs.VerifyWithDomain(b32(binary), b.key, s, domain)
+	return g1pubs.Verify(binary, b.key, s)
+}
+
+func (b *BlsPrivate) DomainSign(domain uint64, binary []byte) []byte {
+	s := g1pubs.SignWithDomain(hash32(binary), b.key, domain)
+	r := s.Serialize()
+	return r[:]
+}
+
+func (b *BlsPublic) DomainVerify(domain uint64, binary []byte, sign []byte) bool {
+	var b96 [96]byte
+	copy(b96[:], sign)
+	s, err := g1pubs.DeserializeSignature(b96)
+	if err != nil {
+		return false
+	}
+	return g1pubs.VerifyWithDomain(hash32(binary), b.key, s, domain)
 }
