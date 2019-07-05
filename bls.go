@@ -55,10 +55,26 @@ func (b *BlsPrivate) Public() *BlsPublic {
 	return &BlsPublic{binary, p}
 }
 
-func (b *BlsPrivate) Sign(binary []byte) []byte {
-
+func b32(binary []byte) [32]byte {
+	var b32 [32]byte
+	copy(b32[:], binary)
+	return b32
 }
 
-func (b *BlsPublic) Verify(binary []byte, sign []byte) bool {
+func (b *BlsPrivate) Sign(domain uint64, binary []byte) []byte {
+	s := g1pubs.SignWithDomain(b32(binary), b.key, domain)
+	b96 := s.Serialize()
+	var r []byte
+	copy(r, b96[:])
+	return r
+}
 
+func (b *BlsPublic) Verify(domain uint64, binary []byte, sign []byte) bool {
+	var b96 [96]byte
+	copy(b96[:], sign)
+	s, err := g1pubs.DeserializeSignature(b96)
+	if err != nil {
+		return false
+	}
+	return g1pubs.VerifyWithDomain(b32(binary), b.key, s, domain)
 }
