@@ -91,21 +91,21 @@ func (b *BlsPublic) Verify(binary []byte, sign []byte) bool {
 	return g1pubs.Verify(binary, b.key, s)
 }
 
-func (b *BlsPrivate) DomainSign(domain uint64, binary []byte) []byte {
-	return b.DomainHashSign(domain, hash32(binary))
+func (b *BlsPrivate) SignDomain(domain uint64, binary []byte) []byte {
+	return b.SignHash(domain, hash32(binary))
 }
 
-func (b *BlsPublic) DomainVerify(domain uint64, binary []byte, sign []byte) bool {
-	return b.DomainHashVerify(domain, hash32(binary), sign)
+func (b *BlsPublic) VerifyDomain(domain uint64, binary []byte, sign []byte) bool {
+	return b.VerifyHash(domain, hash32(binary), sign)
 }
 
-func (b *BlsPrivate) DomainHashSign(domain uint64, binary [32]byte) []byte {
+func (b *BlsPrivate) SignHash(domain uint64, binary [32]byte) []byte {
 	s := g1pubs.SignWithDomain(binary, b.key, domain)
 	r := s.Serialize()
 	return r[:]
 }
 
-func (b *BlsPublic) DomainHashVerify(domain uint64, binary [32]byte, sign []byte) bool {
+func (b *BlsPublic) VerifyHash(domain uint64, binary [32]byte, sign []byte) bool {
 	var b96 [96]byte
 	copy(b96[:], sign)
 	s, err := g1pubs.DeserializeSignature(b96)

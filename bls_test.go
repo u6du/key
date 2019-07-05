@@ -15,15 +15,15 @@ func TestBls(t *testing.T) {
 	private := NewBlsPrivate()
 	private = LoadBlsPrivate(private.Byte())
 
-	sign := private.DomainSign(1, msg)
+	sign := private.SignDomain(1, msg)
 	public := private.Public()
 
 	t.Logf("private len %d", len(private.Byte()))
 
 	t.Logf("sign len %d", len(sign))
 
-	if !public.DomainVerify(1, msg, sign) {
-		t.Error("DomainSign 签名校验错误")
+	if !public.VerifyDomain(1, msg, sign) {
+		t.Error("SignDomain 签名校验错误")
 	}
 
 	sign = private.Sign(msg)
