@@ -1,15 +1,16 @@
 package key
 
 import (
+	"bytes"
 	"crypto/rand"
 	"testing"
 )
 
 // https://github.com/phoreproject/bls/issues/9
 
-func TestBls(t *testing.T) {
+func testBls(t *testing.T, size uint) {
 
-	msg := make([]byte, 1024)
+	msg := make([]byte, size)
 	rand.Read(msg)
 
 	private := NewBlsPrivate()
@@ -33,5 +34,29 @@ func TestBls(t *testing.T) {
 	if !public.Verify(msg, sign) {
 		t.Error("Sign 签名校验错误")
 	}
+}
 
+func TestBls(t *testing.T) {
+	testBls(t, 2)
+	testBls(t, 32)
+	testBls(t, 33)
+	testBls(t, 104)
+
+	privateA := NewBlsPrivate()
+	privateB := NewBlsPrivate()
+
+	keyA, err := privateA.Ecdh(privateB.Public().Byte())
+	if err != nil {
+		t.Error(err)
+	}
+
+	keyB, err := privateB.Ecdh(privateA.Public().Byte())
+	if err != nil {
+		t.Error(err)
+	}
+	t.Logf("ecdh %x", keyA)
+	t.Logf("ecdh %x", keyB)
+	if 0 != bytes.Compare(keyA, keyB) {
+		t.Error("echo not same")
+	}
 }

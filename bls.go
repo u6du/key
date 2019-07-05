@@ -31,6 +31,7 @@ func LoadBlsPrivate(binary []byte) *BlsPrivate {
 func LoadBlsPublic(binary []byte) *BlsPublic {
 	b48 := [48]byte{}
 	copy(b48[:], binary)
+
 	p, err := g1pubs.DeserializePublicKey(b48)
 	ex.Panic(err)
 	return &BlsPublic{binary, p}
@@ -60,8 +61,8 @@ func (b *BlsPublic) Byte() []byte {
 
 func (b *BlsPrivate) Public() *BlsPublic {
 	p := g1pubs.PrivToPub(b.key)
-	binary := make([]byte, 32)
-	t := b.key.Serialize()
+	binary := make([]byte, 48)
+	t := p.Serialize()
 	copy(binary, t[:])
 	return &BlsPublic{binary, p}
 }
