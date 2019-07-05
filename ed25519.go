@@ -7,6 +7,7 @@ import (
 	"golang.org/x/crypto/ed25519"
 )
 
+/*
 type Ed25519Private []byte
 
 type Ed25519Public []byte
@@ -44,7 +45,7 @@ func (e Ed25519Private) Sign(binary []byte) []byte {
 func (e Ed25519Public) Verify(binary []byte, sign []byte) bool {
 	return ed25519.Verify(ed25519.PublicKey(e), binary, sign)
 }
-
+*/
 func NewEd25519PrivatePublicByte() ([]byte, []byte) {
 	public, private, err := ed25519.GenerateKey(rand.Reader)
 	ex.Panic(err)
