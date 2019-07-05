@@ -17,7 +17,7 @@ func TestBls(t *testing.T) {
 
 	sign := private.SignDomain(1, msg)
 	public := private.Public()
-
+	public = LoadBlsPublic(public.Byte())
 	t.Logf("private len %d", len(private.Byte()))
 
 	t.Logf("sign len %d", len(sign))

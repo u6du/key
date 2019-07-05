@@ -11,6 +11,7 @@ github.com/mmcloughlin/avo v0.0.0-20190318053554-7a0eb66183da/go.mod h1:lf5GMZxA
 github.com/mmcloughlin/avo v0.0.0-20190613184424-cad456ebdea7/go.mod h1:lf5GMZxA5kz8dnCweJuER5Rmbx6dDu6qvw0fO3uYKK8=
 github.com/phoreproject/bls v0.0.0-20190621015719-e008a268030e h1:tKwNa11mmojxtuUdtSb5Iy7kKmcEDAgnsRf3RPKuLh8=
 github.com/phoreproject/bls v0.0.0-20190621015719-e008a268030e/go.mod h1:7pK0Ldy91shCmI47LLTn3i3rfTQcHiJJvPqGqzvN5nE=
+github.com/pkg/errors v0.8.1 h1:iURUrRGxPUNPdy5/HRSm+Yj6okJ6UtLINN0Q9M4+h3I=
 github.com/pkg/errors v0.8.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/u6du/config v0.0.0-20190704044722-2b75d4b4eb6c h1:koTZcQ2gCRPIlX2XbmDiyM/g4OKgLXsEa0VZk/COmCA=

@@ -3,7 +3,9 @@ package key
 import (
 	"crypto/rand"
 
+	"github.com/phoreproject/bls"
 	"github.com/phoreproject/bls/g1pubs"
+	"github.com/pkg/errors"
 	"github.com/u6du/ex"
 	"golang.org/x/crypto/blake2b"
 )
@@ -58,7 +60,7 @@ func (b *BlsPublic) Byte() []byte {
 
 func (b *BlsPrivate) Public() *BlsPublic {
 	p := g1pubs.PrivToPub(b.key)
-	var binary []byte
+	binary := make([]byte, 32)
 	t := b.key.Serialize()
 	copy(binary, t[:])
 	return &BlsPublic{binary, p}
@@ -113,4 +115,19 @@ func (b *BlsPublic) VerifyHash(domain uint64, binary [32]byte, sign []byte) bool
 		return false
 	}
 	return g1pubs.VerifyWithDomain(binary, b.key, s, domain)
+}
+
+var ErrEcdh = errors.New("ecdh")
+
+func (b *BlsPrivate) Ecdh(other []byte) ([]byte, error) {
+	b48 := [48]byte{}
+	copy(b48[:], other)
+	p, err := bls.DecompressG1(b48)
+	if err != nil {
+		return []byte{}, ErrEcdh
+	}
+	b96 := p.ToProjective().MulFR(b.key.GetFRElement().ToRepr()).ToAffine().SerializeBytes()
+	r := make([]byte, 96)
+	copy(r, b96[:])
+	return r, nil
 }
