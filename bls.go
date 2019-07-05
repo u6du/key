@@ -6,7 +6,6 @@ type BlsPrivateKey []byte
 type BlsPublicKey []byte
 
 // https://github.com/prysmaticlabs/prysm/blob/master/shared/bls/bls.go
-var Private BlsPrivateKey
 
 func (p BlsPublicKey) Public() BlsPublicKey {
 	var r [32]byte
