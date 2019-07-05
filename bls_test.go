@@ -11,7 +11,6 @@ func TestBls(t *testing.T) {
 
 	msg := make([]byte, 1024)
 	rand.Read(msg)
-	t.Logf("msg %x", msg)
 
 	private := NewBlsPrivate()
 	private = LoadBlsPrivate(private.Byte())
@@ -19,9 +18,9 @@ func TestBls(t *testing.T) {
 	sign := private.DomainSign(1, msg)
 	public := private.Public()
 
-	t.Logf("private %d %x", len(private.Byte()), private.Byte())
+	t.Logf("private len %d", len(private.Byte()))
 
-	t.Logf("sign %d %x", len(sign), sign)
+	t.Logf("sign len %d", len(sign))
 
 	if !public.DomainVerify(1, msg, sign) {
 		t.Error("DomainSign 签名校验错误")
