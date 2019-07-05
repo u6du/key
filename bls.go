@@ -27,13 +27,13 @@ func (p BlsPrivateKey) Public() BlsPublicKey {
 	return t[:]
 }
 */
-func LoadBlsPrivate(b []byte) *BlsPrivateKey {
+func LoadBlsPrivate(b []byte) Private {
 	var t [32]byte
 	copy(t[:], b)
 	return &BlsPrivateKey{BytePrivate{b}, g1pubs.DeserializeSecretKey(t)}
 }
 
-func NewBlsPrivate() *BlsPrivateKey {
+func NewBlsPrivate() Private {
 	private, err := g1pubs.RandKey(rand.Reader)
 	ex.Panic(err)
 	t := private.Serialize()
