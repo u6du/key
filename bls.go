@@ -8,12 +8,12 @@ import (
 )
 
 type BlsPrivate struct {
-	Byte []byte
+	byte []byte
 	key  *g1pubs.SecretKey
 }
 
 type BlsPublic struct {
-	Byte []byte
+	byte []byte
 	key  *g1pubs.PublicKey
 }
 
@@ -44,7 +44,15 @@ func NewBlsPrivate() *BlsPrivate {
 
 func NewBlsPrivatePublicByte() ([]byte, []byte) {
 	private := NewBlsPrivate()
-	return private.Byte, private.Public().Byte
+	return private.Byte(), private.Public().Byte()
+}
+
+func (b *BlsPrivate) Byte() []byte {
+	return b.byte
+}
+
+func (b *BlsPublic) Byte() []byte {
+	return b.byte
 }
 
 func (b *BlsPrivate) Public() *BlsPublic {
