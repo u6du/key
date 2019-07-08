@@ -132,3 +132,12 @@ func (b *BlsPrivate) Ecdh(other []byte) ([]byte, error) {
 	copy(r, b96[:])
 	return r, nil
 }
+
+func (b *BlsPrivate) EcdhBlake2b(other []byte) (byte [32]byte, err error) {
+	key, err := b.Ecdh(other)
+	if err!=nil{
+		return
+	}
+	byte = blake2b.Sum256(key)
+	return
+}
