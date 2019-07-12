@@ -5,7 +5,6 @@ github.com/google/pprof v0.0.0-20190309163659-77426154d546/go.mod h1:zfwlbNMJ+OI
 github.com/ianlancetaylor/demangle v0.0.0-20181102032728-5e5cf60278f6/go.mod h1:aSSvb/t6k1mPoxDqO4vJh6VOCGPwU4O0C2/Eqndh1Sc=
 github.com/mattn/go-sqlite3 v1.10.0 h1:jbhqpg7tQe4SupckyijYiy0mJJ/pRyHvXf7JdWK860o=
 github.com/mattn/go-sqlite3 v1.10.0/go.mod h1:FPy6KqzDD04eiIsT53CuJW3U88zkxoIYsOqkbpncsNc=
-github.com/minio/blake2b-simd v0.0.0-20160723061019-3f5f724cb5b1/go.mod h1:pD8RvIylQ358TN4wwqatJ8rNavkEINozVn9DtGI3dfQ=
 github.com/mmcloughlin/avo v0.0.0-20190318053554-7a0eb66183da/go.mod h1:lf5GMZxA5kz8dnCweJuER5Rmbx6dDu6qvw0fO3uYKK8=
 github.com/phoreproject/bls v0.0.0-20190621015719-e008a268030e h1:tKwNa11mmojxtuUdtSb5Iy7kKmcEDAgnsRf3RPKuLh8=
 github.com/phoreproject/bls v0.0.0-20190621015719-e008a268030e/go.mod h1:7pK0Ldy91shCmI47LLTn3i3rfTQcHiJJvPqGqzvN5nE=
